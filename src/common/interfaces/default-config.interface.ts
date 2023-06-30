@@ -4,7 +4,7 @@
  *
  */
 export interface DefaultConfig {
-  pageCount: 0;
+  pageCount: 1;
   page: 1;
   boundaryCount: {
     start: 0;
