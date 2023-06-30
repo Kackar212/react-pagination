@@ -5,3 +5,4 @@ export * from './use-pagination-base-props.interface';
 export * from './use-pagination-props-with-count.interface';
 export * from './use-pagination-props-with-total.interface';
 export * from './default-config.interface';
+export * from './range.interface';
