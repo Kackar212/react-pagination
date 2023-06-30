@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import { Range } from './range.interface';
+
 /**
  *
  * @see {@link DefaultConfig} for default values.
@@ -39,7 +41,7 @@ export interface UsePaginationBaseProps {
    * You can also specify different count for both sides with object literal
    *
    */
-  siblingCount?: number | { start: number; end: number };
+  siblingCount?: number | Range;
 
   /**
    *
@@ -47,7 +49,7 @@ export interface UsePaginationBaseProps {
    * You can also specify different count for both sides with object literal
    *
    */
-  boundaryCount?: number | { start: number; end: number };
+  boundaryCount?: number | Range;
 
   /**
    *
