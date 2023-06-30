@@ -1,6 +1,6 @@
 /**
  *
- * see {@link UsePaginationBaseProps} for property descriptions.
+ * @see {@link UsePaginationBaseProps} for property descriptions.
  *
  */
 export interface DefaultConfig {
