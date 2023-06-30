@@ -3,7 +3,7 @@
  *
  * @param total - Total number of items
  * @param perPage - Items per page
- * @returns Returns page count
+ * @returns Returns page count, not less than 1.
  *
  * @example
  *
@@ -14,8 +14,14 @@
  * // => 9
  *
  * getPageCount(0, 25)
- * // => 0
+ * // => 1
  */
 export function getPageCount(total: number, perPage: number) {
-  return Math.ceil(total / perPage);
+  const pageCount = Math.ceil(total / perPage);
+
+  if (Number.isNaN(pageCount)) {
+    return 1;
+  }
+
+  return Math.max(pageCount, 1);
 }
