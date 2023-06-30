@@ -1,5 +1,9 @@
 import { ReactNode } from 'react';
-
+/**
+ *
+ * @see {@link DefaultConfig} for default values.
+ *
+ */
 export interface UsePaginationBaseProps {
   /**
    *
