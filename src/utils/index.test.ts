@@ -1,3 +1,4 @@
+import { createRange } from './create-range';
 import { getPageCount } from './get-page-count';
 import { isNumber } from './is-number';
 
@@ -15,6 +16,18 @@ describe('utils', () => {
       expect(getPageCount(50, 6)).toBe(9);
       expect(getPageCount(0, 25)).toBe(1);
       expect(getPageCount(0, 0)).toBe(1);
+    });
+  });
+
+  describe('createRange', () => {
+    it('should return array of numbers starting from start increasing by 1 up to end', () => {
+      expect(createRange(1, 3)).toEqual<number[]>([1, 2, 3]);
+      expect(createRange(-5, 0)).toEqual([-5, -4, -3, -2, -1, 0]);
+    });
+
+    it('should return empty array if start is higher than end', () => {
+      expect(createRange(10, 5)).toEqual([]);
+      expect(createRange(-10, -20)).toEqual([]);
     });
   });
 });
