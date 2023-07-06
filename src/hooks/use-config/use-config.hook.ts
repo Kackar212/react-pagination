@@ -1,11 +1,11 @@
 import { ReactNode, useMemo } from 'react';
-import { isNumber } from '@utils';
 import {
   PaginationConfig,
   Range,
   UsePaginationBaseProps,
   defaults,
 } from '@common';
+import { getNormalizedCount } from '@utils';
 
 export interface UseConfigResult extends UsePaginationBaseProps {
   pageCount: number;
@@ -39,17 +39,6 @@ export interface UseConfigResult extends UsePaginationBaseProps {
  */
 export function useConfig(config: PaginationConfig): UseConfigResult {
   return useMemo(() => {
-    function getNormalizedCount(count: PaginationConfig['boundaryCount']) {
-      if (isNumber(count)) {
-        return {
-          start: count,
-          end: count,
-        };
-      }
-
-      return count;
-    }
-
     const boundaryCount = getNormalizedCount(config.boundaryCount);
     const siblingCount = getNormalizedCount(config.siblingCount);
 
