@@ -1,3 +1,5 @@
+import { PaginationItemType, defaults } from '@common';
+import { createPaginationItem } from './create-pagination-item';
 import { createRange } from './create-range';
 import { getPageCount } from './get-page-count';
 import { isNumber } from './is-number';
@@ -28,6 +30,30 @@ describe('utils', () => {
     it('should return empty array if start is higher than end', () => {
       expect(createRange(10, 5)).toEqual([]);
       expect(createRange(-10, -20)).toEqual([]);
+    });
+  });
+
+  describe('createPaginationItem', () => {
+    it('should return PaginationPage if item is a number', () => {
+      expect(createPaginationItem(10, { ...defaults })).toEqual({
+        type: PaginationItemType.Page,
+        value: 10,
+        isCurrent: false,
+        isPage: true,
+        isGap: false,
+      });
+    });
+
+    it('should return PaginationGap if item is not a number', () => {
+      expect(
+        createPaginationItem(PaginationItemType.StartGap, { ...defaults })
+      ).toEqual({
+        type: PaginationItemType.StartGap,
+        value: '...',
+        isCurrent: false,
+        isPage: false,
+        isGap: true,
+      });
     });
   });
 });
