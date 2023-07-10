@@ -33,7 +33,7 @@ export interface UsePaginationBaseProps {
    * Current page
    *
    */
-  page?: number;
+  page: number;
 
   /**
    *
