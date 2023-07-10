@@ -34,26 +34,28 @@ describe('utils', () => {
   });
 
   describe('createPaginationItem', () => {
+    const config = { ...defaults, page: 10 };
+
     it('should return PaginationPage if item is a number', () => {
-      expect(createPaginationItem(10, { ...defaults })).toEqual({
+      expect(createPaginationItem(10, config)).toEqual({
         type: PaginationItemType.Page,
         value: 10,
-        isCurrent: false,
+        isCurrent: true,
         isPage: true,
         isGap: false,
       });
     });
 
     it('should return PaginationGap if item is not a number', () => {
-      expect(
-        createPaginationItem(PaginationItemType.StartGap, { ...defaults })
-      ).toEqual({
-        type: PaginationItemType.StartGap,
-        value: '...',
-        isCurrent: false,
-        isPage: false,
-        isGap: true,
-      });
+      expect(createPaginationItem(PaginationItemType.StartGap, config)).toEqual(
+        {
+          type: PaginationItemType.StartGap,
+          value: '...',
+          isCurrent: false,
+          isPage: false,
+          isGap: true,
+        }
+      );
     });
   });
 });

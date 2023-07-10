@@ -35,6 +35,18 @@ import { isNumber } from './is-number';
  * *\/
  */
 export function createPaginationItem(
+  item: number,
+  config: UseConfigResult
+): PaginationPage;
+export function createPaginationItem(
+  item: PaginationItemType.StartGap | PaginationItemType.EndGap,
+  config: UseConfigResult
+): PaginationGap;
+export function createPaginationItem(
+  item: PaginationItemType.StartGap | PaginationItemType.EndGap | number,
+  config: UseConfigResult
+): PaginationPage | PaginationGap;
+export function createPaginationItem(
   item: PaginationItemType.StartGap | PaginationItemType.EndGap | number,
   config: UseConfigResult
 ): PaginationPage | PaginationGap {
