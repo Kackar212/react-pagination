@@ -9,14 +9,18 @@ describe('useConfig', () => {
         pageCount: 10,
         boundaryCount: 2,
         siblingCount: { start: 1, end: 2 },
+        page: 1,
       })
     );
 
-    const { result } = renderHook(() => useConfig({ total: 10, perPage: 5 }));
+    const { result } = renderHook(() =>
+      useConfig({ total: 10, perPage: 5, page: 1 })
+    );
 
     expect(config.current).toEqual({
       ...defaults,
       pageCount: 10,
+      page: 1,
       boundaryCount: { start: 2, end: 2 },
       siblingCount: { start: 1, end: 2 },
     });
@@ -25,6 +29,7 @@ describe('useConfig', () => {
       ...defaults,
       total: 10,
       perPage: 5,
+      page: 1,
     });
   });
 });
