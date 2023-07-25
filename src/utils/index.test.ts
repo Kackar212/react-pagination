@@ -3,6 +3,7 @@ import { createPaginationItem } from './create-pagination-item';
 import { createRange } from './create-range';
 import { getPageCount } from './get-page-count';
 import { isNumber } from './is-number';
+import { isPlainObject } from './is-plain-object';
 
 describe('utils', () => {
   describe('isNumber', () => {
@@ -56,6 +57,32 @@ describe('utils', () => {
           isGap: true,
         }
       );
+    });
+  });
+
+  describe('isPlainObject', () => {
+    it('should return false if value or prototype is null', () => {
+      expect(isPlainObject(null)).toBe(false);
+      expect(isPlainObject(Object.create(null))).toBe(false);
+      expect(isPlainObject({ __proto__: null })).toBe(false);
+    });
+
+    it('should return true only if value is a plain object', () => {
+      class Foo {
+        bar: string;
+
+        constructor() {
+          this.bar = 'baz';
+        }
+      }
+
+      expect(isPlainObject({ foo: 'bar' })).toBe(true);
+      expect(isPlainObject([])).toBe(false);
+      expect(isPlainObject(Object.create({ foo: 'bar' }))).toBe(true);
+      // eslint-disable-next-line no-new-object
+      expect(isPlainObject(new Object({ foo: 'bar' }))).toBe(true);
+      expect(isPlainObject(() => undefined)).toBe(false);
+      expect(isPlainObject(new Foo())).toBe(false);
     });
   });
 });
