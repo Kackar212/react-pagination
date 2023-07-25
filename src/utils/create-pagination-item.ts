@@ -1,6 +1,14 @@
 import { PaginationGap, PaginationItemType, PaginationPage } from '@common';
 import { UseConfigResult } from '@hooks';
 import { isNumber } from './is-number';
+import { isPlainObject } from './is-plain-object';
+
+export type CreatePaginationPage =
+  | number
+  | { type: PaginationPage['type']; value: number };
+export type CreatePaginationGap =
+  | PaginationItemType.StartGap
+  | PaginationItemType.EndGap;
 
 /**
  * Returns {@link PaginationPage} if `item` is of type `number`, otherwise {@link PaginationGap}.
@@ -35,36 +43,41 @@ import { isNumber } from './is-number';
  * *\/
  */
 export function createPaginationItem(
-  item: number,
+  item: CreatePaginationPage,
   config: UseConfigResult
 ): PaginationPage;
 export function createPaginationItem(
-  item: PaginationItemType.StartGap | PaginationItemType.EndGap,
+  item: CreatePaginationGap,
   config: UseConfigResult
 ): PaginationGap;
 export function createPaginationItem(
-  item: PaginationItemType.StartGap | PaginationItemType.EndGap | number,
+  item: CreatePaginationGap | CreatePaginationPage,
   config: UseConfigResult
 ): PaginationPage | PaginationGap;
 export function createPaginationItem(
-  item: PaginationItemType.StartGap | PaginationItemType.EndGap | number,
+  item: CreatePaginationGap | CreatePaginationPage,
   config: UseConfigResult
 ): PaginationPage | PaginationGap {
-  if (isNumber(item)) {
+  const isItemNumber = isNumber(item);
+
+  if (!isItemNumber && !isPlainObject(item)) {
     return {
-      type: PaginationItemType.Page,
-      value: item,
-      isPage: true,
-      isCurrent: item === config.page,
-      isGap: false,
+      type: item,
+      value: config.gap,
+      isPage: false,
+      isCurrent: false,
+      isGap: true,
     };
   }
 
+  const type = isItemNumber ? PaginationItemType.Page : item.type;
+  const value = isItemNumber ? item : item.value;
+
   return {
-    type: item,
-    value: config.gap,
-    isPage: false,
-    isCurrent: false,
-    isGap: true,
+    type,
+    value,
+    isPage: true,
+    isCurrent: item === config.page,
+    isGap: false,
   };
 }
