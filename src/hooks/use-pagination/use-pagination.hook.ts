@@ -33,16 +33,16 @@ export interface UsePaginationResult {
  *
  * @example
  *
- * // items are simplified, usePagination returns items as PaginationGap | PaginationPage
+ * // items and returned object are simplified, usePagination returns UsePaginationResult
  *
  * usePagination({ pageCount: 100, page: 10 });
- * // => { pageCount: 100, items: [7, 8, 9, 10, 11, 12, 13] }
+ * // => { pageCount: 100, items: ['first page', 'previous page', 7, 8, 9, 10, 11, 12, 13, 'next page', 'last page'] }
  *
  * usePagination({ total: 1000, perPage: 10, page: 50, boundaryCount: 3 });
- * // => { pageCount: 100, items: [1, 2, 3, "start-gap", 47, 48, 49, 50, 51, 52, 53, "end-gap", 98, 99, 100] }
+ * // => { pageCount: 100, items: ['first page', 'previous page', 1, 2, 3, "start-gap", 47, 48, 49, 50, 51, 52, 53, "end-gap", 98, 99, 100, 'next page', 'last page'] }
  *
  * usePagination({ pageCount: 10, siblingCount: 0, boundaryCount: 0, page: 6 });
- * // => { pageCount: 10, items: [6] }
+ * // => { pageCount: 10, items: ['first page', 'previous page', 6, 'next page', 'last page'] }
  */
 export function usePagination(
   paginationOptions: PaginationConfig
