@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
+import svgr from '@svgr/rollup';
 
 const packageJson = require('./package.json');
 
@@ -29,6 +30,7 @@ export default [
         tsconfig: './tsconfig.json',
         exclude: ['src/**/*.test.tsx', 'src/**/*.stories.tsx'],
       }),
+      svgr(),
       postcss({
         modules: true,
       }),
