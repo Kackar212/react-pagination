@@ -6,7 +6,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "ts-patch install -s && rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest",
