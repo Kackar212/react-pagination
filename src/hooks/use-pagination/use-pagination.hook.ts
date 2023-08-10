@@ -16,10 +16,10 @@ import { useMemo } from 'react';
 export interface UsePaginationResult {
   pageCount: number;
   items: Array<PaginationPage | PaginationGap>;
-  firstItem: PaginationPage;
-  lastItem: PaginationPage;
-  previousItem: PaginationPage;
-  nextItem: PaginationPage;
+  firstPage: PaginationPage;
+  lastPage: PaginationPage;
+  previousPage: PaginationPage;
+  nextPage: PaginationPage;
   page: number;
   onChange: PaginationConfig['onChange'];
 }
@@ -76,8 +76,25 @@ export function usePagination(
       page = pageCount;
     }
 
-    const firstItem = createPaginationItem(1, config);
-    const lastItem = createPaginationItem(pageCount, config);
+    const firstPage = createPaginationItem(
+      { type: PaginationItemType.FirstPage, value: 1 },
+      config
+    );
+    const lastPage = createPaginationItem(
+      { type: PaginationItemType.LastPage, value: pageCount },
+      config
+    );
+    const previousPage = createPaginationItem(
+      { type: PaginationItemType.PreviousPage, value: Math.max(page - 1, 1) },
+      config
+    );
+    const nextPage = createPaginationItem(
+      {
+        type: PaginationItemType.NextPage,
+        value: Math.min(page + 1, pageCount),
+      },
+      config
+    );
 
     const startBoundary = createRange(1, boundaryCount.start);
     const endBoundary = createRange(
@@ -132,11 +149,11 @@ export function usePagination(
 
     return {
       pageCount,
-      items,
-      firstItem,
-      lastItem,
-      previousItem: createPaginationItem(Math.max(page - 1, 1), config),
-      nextItem: createPaginationItem(Math.min(page + 1, pageCount), config),
+      items: [firstPage, previousPage, ...items, nextPage, lastPage],
+      firstPage,
+      lastPage,
+      previousPage,
+      nextPage,
       page,
       onChange: config.onChange,
     };
