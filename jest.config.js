@@ -12,6 +12,7 @@ const config = {
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@common/(.*)$': '<rootDir>/src/common/$1',
+    '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '\\.(css|scss)$': 'identity-obj-proxy',
   },
 };
