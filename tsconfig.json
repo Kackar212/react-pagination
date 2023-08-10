@@ -24,7 +24,14 @@
       "@utils/*": ["./src/utils/*"],
       "@common/*": ["./src/common/*"]
     },
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" },
+      { "transform": "typescript-transform-paths" },
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
+    ]
   },
   "exclude": ["dist", "node_modules"]
 }
