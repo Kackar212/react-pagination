@@ -5,6 +5,8 @@ import dts from 'rollup-plugin-dts';
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import svgr from '@svgr/rollup';
+import alias from '@rollup/plugin-alias';
+import path from 'path';
 
 const packageJson = require('./package.json');
 
@@ -24,6 +26,11 @@ export default [
       },
     ],
     plugins: [
+      alias({
+        entries: {
+          '@assets': path.resolve(__dirname, 'src/assets'),
+        },
+      }),
       resolve(),
       commonjs(),
       typescript({
