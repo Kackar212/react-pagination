@@ -21,7 +21,6 @@ export interface UsePaginationResult {
   previousPage: PaginationPage;
   nextPage: PaginationPage;
   page: number;
-  onChange: PaginationConfig['onChange'];
 }
 
 /**
@@ -155,7 +154,6 @@ export function usePagination(
       previousPage,
       nextPage,
       page,
-      onChange: config.onChange,
     };
   }, [config]);
 }
