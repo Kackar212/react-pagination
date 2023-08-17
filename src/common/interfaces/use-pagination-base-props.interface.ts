@@ -57,11 +57,4 @@ export interface UsePaginationBaseProps {
    *
    */
   gap?: ReactNode;
-
-  /**
-   *
-   * Listener dispatched when the page is changed
-   *
-   */
-  onChange?: (page: number, event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
