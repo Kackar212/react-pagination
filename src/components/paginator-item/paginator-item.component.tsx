@@ -19,15 +19,19 @@ const icons = {
 export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
   const {
     Link,
-    item: { type, value },
+    item: { type, value, isCurrent },
     ...rest
   } = props;
   const linkProps = rest as P;
 
   if (type === PaginationItemType.Page) {
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <Link className={styles.item} {...linkProps}>
+      <Link
+        className={styles.item}
+        aria-current={isCurrent && 'page'}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...linkProps}
+      >
         <span className={styles.page}>{value}</span>
       </Link>
     );
