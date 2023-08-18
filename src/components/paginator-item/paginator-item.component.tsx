@@ -2,6 +2,7 @@ import React from 'react';
 import { PaginationGap, PaginationItemType, PaginationPage } from '@common';
 import ArrowIcon from '@assets/arrow.svg';
 import DoubleArrowIcon from '@assets/double-arrow.svg';
+import styles from './paginator-item.module.scss';
 
 export type PaginatorItemProps<P> = {
   Link: React.FC<P>;
@@ -26,8 +27,8 @@ export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
   if (type === PaginationItemType.Page) {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
-      <Link {...linkProps}>
-        <span>{value}</span>
+      <Link className={styles.item} {...linkProps}>
+        <span className={styles.page}>{value}</span>
       </Link>
     );
   }
@@ -40,8 +41,13 @@ export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Link {...linkProps} data-type={type} aria-label={type}>
+    <Link
+      className={styles.item}
+      data-type={type}
+      aria-label={type}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...linkProps}
+    >
       {icons[type]}
     </Link>
   );

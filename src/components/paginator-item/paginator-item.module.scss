@@ -1,0 +1,46 @@
+.item {
+  display: flex;
+  text-decoration: none;
+  color: var(--item-color);
+  min-width: 24px;
+  min-height: 24px;
+  align-items: center;
+  justify-content: center;
+  border: var(--item-variant);
+  border-radius: var(--item-shape);
+  transition: backround 0.3s;
+  font-size: var(--item-size);
+  padding: calc(var(--item-spacing) / 3);
+
+  &[data-type='first page'],
+  &[data-type='previous page'] {
+    --icon-rotate: 180deg;
+  }
+
+  & svg {
+    transform: rotate(var(--icon-rotate, 0)) scale(0.75);
+  }
+
+  &[aria-current='page'] {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #000;
+
+    & svg {
+      fill: #fff;
+    }
+  }
+
+  &:focus {
+    outline: 1px solid #000;
+  }
+
+  .page {
+    margin-bottom: -3px;
+    margin-top: -1px;
+  }
+}
