@@ -9,8 +9,8 @@ export type PaginatorItemProps<P> = {
 } & P;
 
 const icons = {
-  [PaginationItemType.FirstPage]: <DoubleArrowIcon transform="rotate(180)" />,
-  [PaginationItemType.PreviousPage]: <ArrowIcon transform="rotate(180)" />,
+  [PaginationItemType.FirstPage]: <DoubleArrowIcon />,
+  [PaginationItemType.PreviousPage]: <ArrowIcon />,
   [PaginationItemType.NextPage]: <ArrowIcon />,
   [PaginationItemType.LastPage]: <DoubleArrowIcon />,
 };
@@ -26,7 +26,9 @@ export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
   if (type === PaginationItemType.Page) {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
-      <Link {...linkProps}>{value}</Link>
+      <Link {...linkProps}>
+        <span>{value}</span>
+      </Link>
     );
   }
 
@@ -39,7 +41,7 @@ export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <Link {...linkProps} aria-label={type}>
+    <Link {...linkProps} data-type={type} aria-label={type}>
       {icons[type]}
     </Link>
   );
