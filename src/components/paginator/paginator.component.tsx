@@ -1,6 +1,7 @@
 import React, { CSSProperties, JSX, useMemo } from 'react';
 import { usePagination } from '@hooks/use-pagination/use-pagination.hook';
 import { PaginatorProps } from './paginator.props';
+import styles from './paginator.module.scss';
 
 const defaultStyle = {
   colors: {
@@ -55,8 +56,8 @@ export function Paginator(props: PaginatorProps): JSX.Element {
   );
 
   return (
-    <nav aria-label={label} style={vars}>
-      <ul>
+    <nav className={styles.paginator} aria-label={label} style={vars}>
+      <ul className={styles.list}>
         {showFirst && <li>{renderItem(firstPage)}</li>}
         {showPrevious && <li>{renderItem(previousPage)}</li>}
         {items.map((item) => (
