@@ -38,6 +38,7 @@ export function Paginator(props: PaginatorProps): JSX.Element {
     size = 'small',
     spacing = 3,
     color = 'primary',
+    classNames,
     ...usePaginationConfig
   } = props;
   const pagination = usePagination(usePaginationConfig);
@@ -56,15 +57,29 @@ export function Paginator(props: PaginatorProps): JSX.Element {
   );
 
   return (
-    <nav className={styles.paginator} aria-label={label} style={vars}>
-      <ul className={styles.list}>
-        {showFirst && <li>{renderItem(firstPage)}</li>}
-        {showPrevious && <li>{renderItem(previousPage)}</li>}
+    <nav
+      className={classNames?.paginator || styles.paginator}
+      aria-label={label}
+      style={vars}
+    >
+      <ul className={classNames?.paginatorList || styles.list}>
+        {showFirst && (
+          <li className={classNames?.controls}>{renderItem(firstPage)}</li>
+        )}
+        {showPrevious && (
+          <li className={classNames?.controls}>{renderItem(previousPage)}</li>
+        )}
         {items.map((item) => (
-          <li>{renderItem(item)}</li>
+          <li className={item.isCurrent ? classNames?.current : ''}>
+            {renderItem(item)}
+          </li>
         ))}
-        {showNext && <li>{renderItem(nextPage)}</li>}
-        {showLast && <li>{renderItem(lastPage)}</li>}
+        {showNext && (
+          <li className={classNames?.controls}>{renderItem(nextPage)}</li>
+        )}
+        {showLast && (
+          <li className={classNames?.controls}>{renderItem(lastPage)}</li>
+        )}
       </ul>
     </nav>
   );
