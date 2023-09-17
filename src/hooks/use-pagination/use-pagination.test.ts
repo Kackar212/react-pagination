@@ -7,30 +7,42 @@ import { usePagination } from './use-pagination.hook';
 
 describe('usePagination', () => {
   let testConfig = { ...defaults, pageCount: 100, page: 10 };
-  let firstItem = createPaginationItem(1, testConfig);
-  let lastItem = createPaginationItem(100, testConfig);
-  let previousItem = createPaginationItem(9, testConfig);
-  let nextItem = createPaginationItem(11, testConfig);
+  let firstPage = createPaginationItem(1, testConfig);
+  let lastPage = createPaginationItem(100, testConfig);
+  let previousPage = createPaginationItem(9, testConfig);
+  let nextPage = createPaginationItem(11, testConfig);
   let defaultResult = {
-    firstItem,
-    lastItem,
-    previousItem,
-    nextItem,
+    firstPage,
+    lastPage,
+    previousPage,
+    nextPage,
     page: 10,
     pageCount: 100,
   };
 
   beforeEach(() => {
     testConfig = { ...defaults, pageCount: 100, page: 10 };
-    firstItem = createPaginationItem(1, testConfig);
-    lastItem = createPaginationItem(100, testConfig);
-    previousItem = createPaginationItem(9, testConfig);
-    nextItem = createPaginationItem(11, testConfig);
+    firstPage = createPaginationItem(
+      { type: PaginationItemType.FirstPage, value: 1 },
+      testConfig
+    );
+    lastPage = createPaginationItem(
+      { type: PaginationItemType.LastPage, value: 100 },
+      testConfig
+    );
+    previousPage = createPaginationItem(
+      { type: PaginationItemType.PreviousPage, value: 9 },
+      testConfig
+    );
+    nextPage = createPaginationItem(
+      { type: PaginationItemType.NextPage, value: 11 },
+      testConfig
+    );
     defaultResult = {
-      firstItem,
-      lastItem,
-      previousItem,
-      nextItem,
+      firstPage,
+      lastPage,
+      previousPage,
+      nextPage,
       page: 10,
       pageCount: 100,
     };
@@ -118,8 +130,8 @@ describe('usePagination', () => {
       usePagination(config.current as PaginationConfig)
     );
 
-    defaultResult.previousItem.value = config.current.page - 1;
-    defaultResult.nextItem.value = config.current.page + 1;
+    defaultResult.previousPage.value = config.current.page - 1;
+    defaultResult.nextPage.value = config.current.page + 1;
     defaultResult.page = config.current.page;
 
     expect(result.current).toEqual({
