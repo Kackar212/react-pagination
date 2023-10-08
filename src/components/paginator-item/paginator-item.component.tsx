@@ -2,6 +2,7 @@ import React from 'react';
 import { PaginationGap, PaginationItemType, PaginationPage } from '@common';
 import ArrowIcon from '@assets/arrow.svg';
 import DoubleArrowIcon from '@assets/double-arrow.svg';
+import { VisuallyHidden } from '@components/visually-hidden/visually-hidden.component';
 import styles from './paginator-item.module.scss';
 
 export type PaginatorItemProps<P> = {
@@ -32,7 +33,9 @@ export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...linkProps}
       >
-        <span className={styles.page}>{value}</span>
+        <span className={styles.page}>
+          <VisuallyHidden>page</VisuallyHidden> {value}
+        </span>
       </Link>
     );
   }
