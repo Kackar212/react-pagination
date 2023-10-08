@@ -15,6 +15,10 @@ const config = {
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '\\.(css|scss)$': 'identity-obj-proxy',
   },
+  transform: {
+    '\\.[jt]sx?$': 'ts-jest',
+    '\\.(svg)$': 'jest-transformer-svg',
+  },
 };
 
 module.exports = config;
