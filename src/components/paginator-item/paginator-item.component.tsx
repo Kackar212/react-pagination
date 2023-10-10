@@ -17,6 +17,16 @@ const icons = {
   [PaginationItemType.LastPage]: <DoubleArrowIcon />,
 };
 
+/**
+ * Component for rendering single pagination item
+ *
+ * @param props
+ * @returns Element
+ *
+ * @example
+ *
+ * <Paginator ... renderItem={(item) => <PaginatorItem Link={() => ...} item={item} />}
+ */
 export function PaginatorItem<P>(props: PaginatorItemProps<P>) {
   const {
     Link,
