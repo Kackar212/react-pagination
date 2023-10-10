@@ -25,6 +25,19 @@ const defaultStyle = {
   spacing: '0.15rem',
 } as const;
 
+/**
+ * Main component, displays pagination.
+ *
+ * @param props
+ *
+ * @returns React.JSX.Element
+ *
+ * @example
+ *
+ * <Paginator pageCount={100} page={2} renderItem={(item: PaginationPage | PaginationGap) => <PaginatorItem .../>}/>
+ *
+ * <Paginator total={1000} perPage={10} page={2} renderItem={(item: PaginationPage | PaginationGap) => <PaginatorItem .../>}/>
+ */
 export function Paginator(props: PaginatorProps): JSX.Element {
   const {
     showNext = true,
@@ -70,7 +83,10 @@ export function Paginator(props: PaginatorProps): JSX.Element {
           <li className={classNames?.controls}>{renderItem(previousPage)}</li>
         )}
         {items.map((item) => (
-          <li className={item.isCurrent ? classNames?.current : ''}>
+          <li
+            key={item.value as number}
+            className={item.isCurrent ? classNames?.current : ''}
+          >
             {renderItem(item)}
           </li>
         ))}
